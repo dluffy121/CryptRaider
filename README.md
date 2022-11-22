@@ -20,22 +20,32 @@ An Unreal Engine first-person puzzle game, where the player is tasked to bring b
 Various assets are put together to create different rooms. Also prop assets are added to give a more dense and real feel to the dungeon. By using different lights in the form of lamps and bonfire make the rooms feel more lively but only lighting to such an extent that the eerie feel of the darkness is retained.
 
 For Example: The first spawning room contains various stone seatings, bonfire, coffin, torches, windows, statues, etc.
+![SpawnRoom](https://user-images.githubusercontent.com/43366313/203402303-e483a78a-f099-4a35-804d-5f938b9268f4.png)<br>*Spawn Room*
 
 Some Level Design is done in a modular way to help reuse programmed assets at different places to achieve similar goal.
 
 For Example: A dungeon wall which moves when its trigger component's (custom) collider detects valid trigger item.
 This wall is used in first room with hidden mechanic to act as a lift and reused inside crypt to hide a secret room.
+![ModularMovableWall](https://user-images.githubusercontent.com/43366313/203402436-8985e46f-c94c-40fb-a983-ccd641332bf4.png)<br>*Movable Wall*
 
 ## **Lighting**
 
 Almost every form of lights is used to light the environment using the Lumen Global Illumination and Reflections
-1. Directional Light to give a base directional illumination.
-2. Skylights to indirectly illuminate darker areas of dungeon.
-3. Point Lights for torches
-4. Spot Lights to highlight grabbable objects
-5. Using Emissive materials on particles of bonfire.
+1. Directional Light to give a base directional illumination.<br>![DirectionalLight](https://user-images.githubusercontent.com/43366313/203402508-abb2099c-118d-43f2-84c0-00b447015ce3.png)<br>*Directional Light through window*
 
-Light bleeding is prevented for assets that are back face culled and having anavoidable seams by adding blockers.
+2. Skylights to indirectly illuminate darker areas of dungeon.<br>![SkyLight](https://user-images.githubusercontent.com/43366313/203402768-4df58800-1489-48d7-8e9d-4453d7c35a4d.png)<br>*Sky Light illuminating dark places with natural light*
+
+3. Point Lights for torches.<br>![PointLight](https://user-images.githubusercontent.com/43366313/203402907-8c947f10-ffe1-4f02-8777-edafa7fad866.png)<br>*Point Light*
+
+4. Spot Lights to highlight grabbable objects.<br>![SpotLight](https://user-images.githubusercontent.com/43366313/203403323-14a18ea8-f58e-4184-80b8-c8d0c89d75d8.png)<br>*Spot Light*
+
+5. Using Emissive materials on particles of bonfire.<br>![EmissiveMaterial](https://user-images.githubusercontent.com/43366313/203402982-152aea05-32f1-4e60-9dc1-f9acccebc74b.png)<br>*Bonfire Particles with Emissive Material*
+
+
+Apart from this phenomenon of light bleeding happens when assets that are back face culled. The culled faces dont exist to calcuate for blocking/reflecting of light, therefore to avoid this we add adding blockers which are just assets that can act as the faces of the object to block light from entering from back.
+
+![Bleed Blockers](https://user-images.githubusercontent.com/43366313/203404377-138367fc-8370-485d-bcb0-4e48f87af842.png)<br>*Light Bleed Blockers*
+
 
 ## **Character Handling**
 
@@ -70,6 +80,12 @@ void ACryptRaiderCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACryptRaiderCharacter::LookUpAtRate);
 }
 ```
+
+Even touch input is handled by methods
+* ACryptRaiderCharacter::BeginTouch
+* ACryptRaiderCharacter::EndTouch
+* ACryptRaiderCharacter::TouchUpdate
+* and by maintaining a touch data under TouchData struct
 
 ## **Object Grabbing**
 
