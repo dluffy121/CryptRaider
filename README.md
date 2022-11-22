@@ -123,10 +123,15 @@ Custom Channels can be created to detect custom traces or object types.
 Custom classes are created by using inheritence and composition of Unreal classes, like UActorComponen, USceneComponent, UBoxComponent, etc.
 ### **[ActorScaler](Source/CryptRaider/ActorScaler.cpp)**
 This component when attached to actor is responsible for scaling it to desired scale value within certain duration.
+![ActorScaler](https://user-images.githubusercontent.com/43366313/203411811-25b31937-d6b4-48be-90a4-1c124bc89893.gif)
+
 ### **[Mover](Source/CryptRaider/Mover.cpp)**
 This component when attached to actor is responsible for moving it to desired location by some offset within certain duration.
+![Mover](https://user-images.githubusercontent.com/43366313/203411838-6c068a9f-b444-4b10-b46f-86b7b407876a.gif)
+
 ### **[TrapDoor](Source/CryptRaider/TrapDoor.cpp)**
 This component can be attached to any actor which has door like properties and a collision area which is responsible for triggering the trapping mechanic. By mentioning the maximun closing angle and duration of closing any actor with such properties can act as a trap door.
+![TrapDoor](https://user-images.githubusercontent.com/43366313/203411859-d258b25c-d4d3-40d3-a2a7-e2182f13df02.gif)
 
 Many Unreal provided features used in these classes are:
 1. Variable/Data Types:
