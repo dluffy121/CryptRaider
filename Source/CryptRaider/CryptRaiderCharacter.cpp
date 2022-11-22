@@ -59,7 +59,7 @@ void ACryptRaiderCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAction("PrimaryAction", IE_Pressed, this, &ACryptRaiderCharacter::OnPrimaryAction);
 
 	// Enable touchscreen input
-	EnableTouchscreenMovement(PlayerInputComponent);
+	bIsUsingTouchInput = EnableTouchscreenMovement(PlayerInputComponent);
 
 	// Bind movement events
 	PlayerInputComponent->BindAxis("Move Forward / Backward", this, &ACryptRaiderCharacter::MoveForward);
@@ -82,14 +82,9 @@ void ACryptRaiderCharacter::OnPrimaryAction()
 
 void ACryptRaiderCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
-	if (TouchItem.bIsPressed == true)
-	{
-		return;
-	}
+	if (TouchItem.bIsPressed == true) return;
 	if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
-	{
 		OnPrimaryAction();
-	}
 	TouchItem.bIsPressed = true;
 	TouchItem.FingerIndex = FingerIndex;
 	TouchItem.Location = Location;
@@ -98,10 +93,7 @@ void ACryptRaiderCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, cons
 
 void ACryptRaiderCharacter::EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
-	if (TouchItem.bIsPressed == false)
-	{
-		return;
-	}
+	if (TouchItem.bIsPressed == false) return;
 	TouchItem.bIsPressed = false;
 }
 
@@ -144,6 +136,11 @@ bool ACryptRaiderCharacter::EnableTouchscreenMovement(class UInputComponent* Pla
 
 		return true;
 	}
-	
+
 	return false;
+}
+
+void ACryptRaiderCharacter::GetIsUsingTouchInput(TEnumAsByte<EBoolPins>& IsTouchInput)
+{
+	IsTouchInput = bIsUsingTouchInput ? EBoolPins::EB_True : EBoolPins::EB_False;
 }

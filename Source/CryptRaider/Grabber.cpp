@@ -40,6 +40,7 @@ void UGrabber::Grab()
 	FHitResult hit;
 	if (GetGrabbableInReach(hit))
 	{
+		bIsHolding = true;
 		StartHolding(hit);
 		AddTag(hit.GetActor());
 		UE_LOG(LogTemp, Display, TEXT("Grabbed: %s"), *hit.GetComponent()->GetName());
@@ -52,6 +53,7 @@ void UGrabber::Release()
 		return;
 
 	UE_LOG(LogTemp, Display, TEXT("Released: %s"), *PhysicsHandle->GetGrabbedComponent()->GetName());
+	bIsHolding = false;
 	RemoveTag(PhysicsHandle->GetGrabbedComponent()->GetOwner());
 	PhysicsHandle->ReleaseComponent();
 }
@@ -74,7 +76,7 @@ void UGrabber::StartHolding(const FHitResult& hit)
 
 	hitComponent->WakeAllRigidBodies();
 
-	AActor* actor =  hit.GetActor();
+	AActor* actor = hit.GetActor();
 	actor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 
 	PhysicsHandle->GrabComponentAtLocationWithRotation(
@@ -102,4 +104,9 @@ void UGrabber::AddTag(AActor* actor)
 void UGrabber::RemoveTag(AActor* actor)
 {
 	actor->Tags.Remove(GrabbedTag);
+}
+
+void UGrabber::GetIsHolding(TEnumAsByte<EBoolPins>& IsHolding)
+{
+	IsHolding = bIsHolding ? EBoolPins::EB_True : EBoolPins::EB_False;
 }

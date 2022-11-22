@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Enums.h"
 #include "Grabber.generated.h"
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
@@ -33,6 +34,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void Release();
 
+	UFUNCTION(BlueprintCallable, meta = (ExpandEnumAsExecs = "IsHolding"))
+		void GetIsHolding(TEnumAsByte<EBoolPins>& IsHolding);
+
 private:
 	UPhysicsHandleComponent* PhysicsHandle;
 
@@ -44,6 +48,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float HoldDistance = 100.0f;
+
+	UPROPERTY(VisibleAnywhere)
+		bool bIsHolding = false;
 
 private:
 	bool GetGrabbableInReach(FHitResult& hit) const;
