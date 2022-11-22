@@ -47,9 +47,6 @@ public:
 		FOnUseItem OnUseItem;
 protected:
 
-	/** Fires a projectile. */
-	void OnPrimaryAction();
-
 	/** Handles moving forward/backward */
 	void MoveForward(float Val);
 

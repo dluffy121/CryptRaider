@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "CryptRaiderCharacter.h"
-#include "CryptRaiderProjectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -55,9 +54,6 @@ void ACryptRaiderCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-	// Bind fire event
-	PlayerInputComponent->BindAction("PrimaryAction", IE_Pressed, this, &ACryptRaiderCharacter::OnPrimaryAction);
-
 	// Enable touchscreen input
 	bIsUsingTouchInput = EnableTouchscreenMovement(PlayerInputComponent);
 
@@ -74,17 +70,9 @@ void ACryptRaiderCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &ACryptRaiderCharacter::LookUpAtRate);
 }
 
-void ACryptRaiderCharacter::OnPrimaryAction()
-{
-	// Trigger the OnItemUsed Event
-	OnUseItem.Broadcast();
-}
-
 void ACryptRaiderCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	if (TouchItem.bIsPressed == true) return;
-	if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
-		OnPrimaryAction();
 	TouchItem.bIsPressed = true;
 	TouchItem.FingerIndex = FingerIndex;
 	TouchItem.Location = Location;
