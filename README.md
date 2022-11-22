@@ -121,12 +121,10 @@ Custom Channels can be created to detect custom traces or object types.
 ## **Other Custom Classes**
 
 Custom classes are created by using inheritence and composition of Unreal classes, like UActorComponen, USceneComponent, UBoxComponent, etc.
-Blueprint Callable
-Dependency Injection
 ### **[ActorScaler](Source/CryptRaider/ActorScaler.cpp)**
 This component when attached to actor is responsible for scaling it to desired scale value within certain duration.
 ### **[Mover](Source/CryptRaider/Mover.cpp)**
-This component when attached to actor is responsible for moving it to desired location by some offset with within certain duration.
+This component when attached to actor is responsible for moving it to desired location by some offset within certain duration.
 ### **[TrapDoor](Source/CryptRaider/TrapDoor.cpp)**
 This component can be attached to any actor which has door like properties and a collision area which is responsible for triggering the trapping mechanic. By mentioning the maximun closing angle and duration of closing any actor with such properties can act as a trap door.
 
@@ -135,6 +133,8 @@ Many Unreal provided features used in these classes are:
    1. TArray
 2. Macros:
    1. UFUNCTION
+   2. UFUNCTION(BlueprintCallable)
+   3. BlueprintCallable with meta of ExpandEnumAsExecs to create multiple execution pins
 3. Math Methods:
    1. FMath::VInterpConstantTo
    2. FMath::RInterpTo
@@ -144,17 +144,19 @@ Many Unreal provided features used in these classes are:
 5. Other Useful Methods:
    1. FindComponentByClass
    2. Cast<>
+   3. GetWorld
 
 ## Various Programming Concepts
 1. Inheritence
 2. Composition
-3. Pointers
-4. References
-5. Dereferencing **(->)**
-6. Const Refenencing method variables
-7. Constructors
-8. While and For Loops
-9. Boolean Logical Operators
+3. Dependency Injection
+4. Pointers
+5. References
+6. Dereferencing **(->)**
+7. Const Refenencing method variables
+8. Constructors
+9. While and For Loops
+10. Boolean Logical Operators
 
 ## Dependencies
 1. [Medieval Dungeon](https://www.unrealengine.com/marketplace/en-US/product/a5b6a73fea5340bda9b8ac33d877c9e2)
