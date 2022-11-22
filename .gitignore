@@ -76,3 +76,4 @@ DerivedDataCache/*
 
 # Ignore Large Assets
 Content/MedievalDungeon/*
+Document/
