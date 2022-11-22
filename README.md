@@ -108,6 +108,9 @@ bool UGrabber::GetGrabbableInReach(FHitResult& hit) const
 }
 ```
 
+The character blueprint graphs how the input of grab is handled by calling different methods on Grabber component
+![CharacterGrabBluewprint](https://user-images.githubusercontent.com/43366313/203414374-d992dca8-60df-4cd2-8dba-872505baf059.png)
+
 ## **Collision**
 
 Any Static Mesh object in Unreal has a physics body and can have collision responses with other physics bodies in 3 ways namely:
