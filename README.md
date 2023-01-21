@@ -20,12 +20,14 @@ An Unreal Engine first-person puzzle game, where the player is tasked to bring b
 Various assets are put together to create different rooms. Also prop assets are added to give a more dense and real feel to the dungeon. By using different lights in the form of lamps and bonfire make the rooms feel more lively but only lighting to such an extent that the eerie feel of the darkness is retained.
 
 For Example: The first spawning room contains various stone seatings, bonfire, coffin, torches, windows, statues, etc.
+
 ![SpawnRoom](https://user-images.githubusercontent.com/43366313/203402303-e483a78a-f099-4a35-804d-5f938b9268f4.png)<br>*Spawn Room*
 
 Some Level Design is done in a modular way to help reuse programmed assets at different places to achieve similar goal.
 
 For Example: A dungeon wall which moves when its trigger component's (custom) collider detects valid trigger item.
 This wall is used in first room with hidden mechanic to act as a lift and reused inside crypt to hide a secret room.
+
 ![ModularMovableWall](https://user-images.githubusercontent.com/43366313/203402436-8985e46f-c94c-40fb-a983-ccd641332bf4.png)<br>*Movable Wall*
 
 ## **Lighting**
@@ -109,6 +111,7 @@ bool UGrabber::GetGrabbableInReach(FHitResult& hit) const
 ```
 
 The character blueprint graphs how the input of grab is handled by calling different methods on Grabber component
+
 ![CharacterGrabBluewprint](https://user-images.githubusercontent.com/43366313/203414374-d992dca8-60df-4cd2-8dba-872505baf059.png)
 
 ## **Collision**
@@ -126,14 +129,17 @@ Custom Channels can be created to detect custom traces or object types.
 Custom classes are created by using inheritence and composition of Unreal classes, like UActorComponen, USceneComponent, UBoxComponent, etc.
 ### **[ActorScaler](Source/CryptRaider/ActorScaler.cpp)**
 This component when attached to actor is responsible for scaling it to desired scale value within certain duration.
+
 ![ActorScaler](https://user-images.githubusercontent.com/43366313/203411811-25b31937-d6b4-48be-90a4-1c124bc89893.gif)
 
 ### **[Mover](Source/CryptRaider/Mover.cpp)**
 This component when attached to actor is responsible for moving it to desired location by some offset within certain duration.
+
 ![Mover](https://user-images.githubusercontent.com/43366313/203411838-6c068a9f-b444-4b10-b46f-86b7b407876a.gif)
 
 ### **[TrapDoor](Source/CryptRaider/TrapDoor.cpp)**
 This component can be attached to any actor which has door like properties and a collision area which is responsible for triggering the trapping mechanic. By mentioning the maximun closing angle and duration of closing any actor with such properties can act as a trap door.
+
 ![TrapDoor](https://user-images.githubusercontent.com/43366313/203411859-d258b25c-d4d3-40d3-a2a7-e2182f13df02.gif)
 
 Many Unreal provided features used in these classes are:
